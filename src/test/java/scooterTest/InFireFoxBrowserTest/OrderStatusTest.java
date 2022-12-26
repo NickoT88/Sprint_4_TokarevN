@@ -5,21 +5,15 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.yandex.praktikum.*;
-import scooterTest.InChromeBrowserTest.TestBaseChrome;
 
-import java.util.concurrent.TimeUnit;
-
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 
 //Класс с автотестами
 @RunWith(Parameterized.class)
-public class OrderStatusTest extends TestBaseFireFox {
-    WebDriver driver;
+public class OrderStatusTest extends ConnectionFF {
+
     private final String buttonLocation;
     private final String name;
     private final String surname;
@@ -41,12 +35,10 @@ public class OrderStatusTest extends TestBaseFireFox {
         this.newColor = newColor;
         this.newComment = newComment;
     }
-    //подключение драйвера браузера и установление ожидания в 5 секунд. Для FireFox нужно прописать путь до файла geckodriver.exe
+    //подключение драйвера браузера и установление ожидания в 5 секунд через аннотацию @Before
     @Before
     public void setUp() {
-        System.setProperty("webdriver.gecko.driver", "G:\\EDIprojects\\FireFoxTest\\geckodriver.exe");
-        driver = new FirefoxDriver();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        open();
     }
     //набор тестовых данных
     @Parameterized.Parameters
@@ -58,7 +50,6 @@ public class OrderStatusTest extends TestBaseFireFox {
         };
     }
 
-    //тест ввода данных в поля на странице Для кого самокат
     @Test
     public void enterOrderAllDataTest() {
 
@@ -91,6 +82,7 @@ public class OrderStatusTest extends TestBaseFireFox {
     //закрываю браузер
     @After
     public void tearDowm() {
-        driver.quit();
+
+        close();
     }
 }

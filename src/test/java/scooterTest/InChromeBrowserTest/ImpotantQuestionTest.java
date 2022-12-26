@@ -1,36 +1,28 @@
 package scooterTest.InChromeBrowserTest;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import ru.yandex.praktikum.HomePage;
-
-import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
-public class ImpotantQuestionTest extends TestBaseChrome {
+public class ImpotantQuestionTest extends ConnectionChrome {
 
-    WebDriver driver;
-    private static int listIndex;
-    private static boolean correspondence;
+    private final int listIndex;
+    private final boolean correspondence;
     //конструктор тест-класса Вопросы о важном с 2 параметрами
     public ImpotantQuestionTest(int listIndex, boolean correspondence) {
         this.listIndex=listIndex;
         this.correspondence=correspondence;
     }
-    //подключение драйвера браузера и установление ожидания в 5 секунд
+    //подключение драйвера браузера и установление ожидания в 5 секунд через аннотацию @Before
     @Before
     public void setUp() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        open();
     }
     //набор тестовых данных
     @Parameterized.Parameters
@@ -61,7 +53,7 @@ public class ImpotantQuestionTest extends TestBaseChrome {
     //закрываю браузер
     @After
     public void tearDowm() {
-        driver.quit();
+        close();
     }
 
 

@@ -1,22 +1,18 @@
 package scooterTest.InChromeBrowserTest;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import ru.yandex.praktikum.*;
 
-import java.util.concurrent.TimeUnit;
 import static org.junit.Assert.assertTrue;
 
 
 @RunWith(Parameterized.class)
-public class OrderStatusTest extends TestBaseChrome {
-    WebDriver driver;
+public class OrderStatusTest extends ConnectionChrome {
+
     private final String buttonLocation;
     private final String name;
     private final String surname;
@@ -38,12 +34,10 @@ public class OrderStatusTest extends TestBaseChrome {
         this.newColor = newColor;
         this.newComment = newComment;
     }
-    //подключение драйвера браузера и установление ожидания в 5 секунд
+    //подключение драйвера браузера и установление ожидания в 5 секунд через аннотацию @Before
     @Before
     public void setUp() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        open();
     }
 
     //тестовые данные
@@ -56,7 +50,7 @@ public class OrderStatusTest extends TestBaseChrome {
         };
     }
 
-    //тест ввода данных в поля на странице Для кого самокат
+
     @Test
     public void enterOrderAllDataTest() {
 
@@ -88,7 +82,8 @@ public class OrderStatusTest extends TestBaseChrome {
     //закрываю браузер
     @After
     public void tearDowm() {
-        driver.quit();
+
+        close();
     }
 
     }

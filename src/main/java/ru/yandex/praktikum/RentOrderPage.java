@@ -44,7 +44,7 @@ public class RentOrderPage {
         //кнопка "Заказать"
         private By orderButton=By.xpath(".//div[@class='Order_Buttons__1xGrp']/button[text()='Заказать']");
 
-
+        //метод для выбора даты в поле Когда привезти самокат
         public void enterDate(String newDate){
             driver.findElement(orderDataWhenDelivery).sendKeys(newDate);
             driver.findElement(orderDataWhenDelivery).sendKeys(Keys.ENTER);
