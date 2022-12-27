@@ -1,56 +1,26 @@
 package scooterTest.InChromeBrowserTest;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import ru.yandex.praktikum.HomePage;
+import static org.junit.Assert.assertTrue;
 
-import static org.junit.Assert.assertEquals;
-
-@RunWith(Parameterized.class)
 public class ImpotantQuestionTest extends ConnectionChrome {
-
-    private final int listIndex;
-    private final boolean correspondence;
-    //конструктор тест-класса Вопросы о важном с 2 параметрами
-    public ImpotantQuestionTest(int listIndex, boolean correspondence) {
-        this.listIndex=listIndex;
-        this.correspondence=correspondence;
-    }
-    //подключение драйвера браузера и установление ожидания
-
-    public void setUp() {
-        open();
-    }
-    //набор тестовых данных
-    @Parameterized.Parameters
-    public static Object[][] getTestData(){
-        return new Object[][] {
-                {0, true},
-                {1, true},
-                {2, true},
-                {3, true},
-                {4, true},
-                {5, true},
-                {6, true},
-                {7, true},
-        };
-    }
-
     @Test
     public void IsVisibleTextWhenClickedButton() {
+        //подключение драйвера браузера и установление ожидания
+        open();
         //создаю объект класса главнйо страницы
         HomePage objHomePage = new HomePage(driver);
         //открываю саму главную страницу
         objHomePage.openScooterPage();
-        //кликаю по кнопке с вопросом в зависимости от индекса
-        objHomePage.clickButtonsImpotantQuestions(listIndex);
-        //сравниваю результаты
-        assertEquals(correspondence,objHomePage.contentIsDisplayed(listIndex));
-    }
-    //закрываю браузер
-    public void tearDowm() {
+
+        for(int listIndex=0; listIndex<=7; listIndex++ ) {
+            objHomePage.clickButtonsImpotantQuestions(listIndex);
+            assertTrue(objHomePage.contentIsDisplayed(listIndex));
+        }
+        //закрываю браузер
         close();
     }
+
 
 }

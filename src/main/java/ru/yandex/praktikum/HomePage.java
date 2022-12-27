@@ -21,13 +21,13 @@ public class HomePage {
     public void openScooterPage() {
         driver.get("https://qa-scooter.praktikum-services.ru/");
     }
-    //пролистнуть страницу и кликнуть по кнопке в разделе Вопросы о важном
+    //пролистнуть страницу и кликнуть по кнопке в разделе Вопросы о важном (и тут немного ожидания добавил, что визуально понятнее было)
     public void clickButtonsImpotantQuestions (int listIndex){
         By locator=buttonsImpotantQuestionsArray[listIndex];
-
         WebElement element=driver.findElement(locator);
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();" , element);
-
+        new WebDriverWait(driver, 5)
+                .until(ExpectedConditions.visibilityOfElementLocated(locator));
         driver.findElement(locator).click();
     }
     //локатор для верхней кнопки Заказать
@@ -106,7 +106,7 @@ public class HomePage {
     public boolean contentIsDisplayed (int listIndex) {
         By locator = answersImpotantQuestionsArray[listIndex];
         String expectedAnswersText = expectedAnswersImpotantQuestions[listIndex];
-        new WebDriverWait(driver, 3)
+        new WebDriverWait(driver, 5)
                 .until(ExpectedConditions.visibilityOfElementLocated(locator));
         return driver.findElement(locator).isDisplayed() && getAnswersImpotantQuestions(listIndex).equals(expectedAnswersText);
     }

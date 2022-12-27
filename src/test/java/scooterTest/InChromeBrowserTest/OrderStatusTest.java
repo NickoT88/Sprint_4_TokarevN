@@ -20,10 +20,6 @@ public class OrderStatusTest extends ConnectionChrome {
     private final int days;
     private final String newColor;
     private final String newComment;
-    //подключение драйвера браузера и установление ожидания в 5 секунд через
-    public void setUp() {
-        open();
-    }
     //конструктор тест-класса
     public OrderStatusTest(String buttonLocation, String name, String surname, String address, String telephone, String newDate,int days, String newColor, String newComment) {
         this.buttonLocation = buttonLocation;
@@ -49,6 +45,8 @@ public class OrderStatusTest extends ConnectionChrome {
 
     @Test
     public void enterOrderAllDataTest() {
+        //подключение драйвера браузера и установление ожидания
+        open();
         //создаю объект главной страницы
         HomePage objHomePage = new HomePage(driver);
         //обращаюсь к сайту Самоката
@@ -72,9 +70,7 @@ public class OrderStatusTest extends ConnectionChrome {
         OrderIsProcessed objOrderIsProcessed = new OrderIsProcessed(driver);
         //проверяю, что поле "Заказ оформлен" отображается
         assertTrue(objOrderIsProcessed.orderIsProcessedTextIsDisplayed());
-    }
-    //закрываю браузер
-    public void tearDowm() {
+        //закрываю браузер
         close();
     }
 

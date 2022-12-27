@@ -33,10 +33,6 @@ public class OrderStatusTest extends ConnectionFF {
         this.newColor = newColor;
         this.newComment = newComment;
     }
-    //подключение драйвера браузера и установление ожидания в 5 секунд через
-    public void setUp() {
-        open();
-    }
     //набор тестовых данных
     @Parameterized.Parameters
     public static Object[][] getOrderData() {
@@ -49,6 +45,8 @@ public class OrderStatusTest extends ConnectionFF {
 
     @Test
     public void enterOrderAllDataTest() {
+        //подключение драйвера браузера и установление ожидания
+        open();
         //создаю объект главной страницы
         HomePage objHomePage = new HomePage(driver);
         //обращаюсь к сайту Самоката
@@ -72,9 +70,7 @@ public class OrderStatusTest extends ConnectionFF {
         OrderIsProcessed objOrderIsProcessed = new OrderIsProcessed(driver);
         //проверяю, что поле "Заказ оформлен" отображается
         assertTrue(objOrderIsProcessed.orderIsProcessedTextIsDisplayed());
-    }
-    //закрываю браузер
-    public void tearDowm() {
+        //закрываю браузер
         close();
     }
 
