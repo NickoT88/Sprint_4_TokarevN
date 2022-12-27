@@ -1,7 +1,5 @@
 package scooterTest.InChromeBrowserTest;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -19,8 +17,8 @@ public class ImpotantQuestionTest extends ConnectionChrome {
         this.listIndex=listIndex;
         this.correspondence=correspondence;
     }
-    //подключение драйвера браузера и установление ожидания в 5 секунд через аннотацию @Before
-    @Before
+    //подключение драйвера браузера и установление ожидания
+
     public void setUp() {
         open();
     }
@@ -51,10 +49,8 @@ public class ImpotantQuestionTest extends ConnectionChrome {
         assertEquals(correspondence,objHomePage.contentIsDisplayed(listIndex));
     }
     //закрываю браузер
-    @After
     public void tearDowm() {
         close();
     }
-
 
 }

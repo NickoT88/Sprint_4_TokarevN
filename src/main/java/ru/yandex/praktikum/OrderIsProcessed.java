@@ -12,8 +12,8 @@ public class OrderIsProcessed {
     }
 
     //Локатор поля Заказ оформлен
-    private By orderIsProcessed=By.className("Order_ModalHeader__3FDaJ");
-    //метод получает текст из поля Заказ оформлен
+    private By orderIsProcessed=By.xpath("//div[text()='Заказ оформлен']");
+    //метод возвращает истину, если поле Заказ оформлен отображено
     public boolean orderIsProcessedTextIsDisplayed(){
 
         return driver.findElement(orderIsProcessed).isDisplayed();

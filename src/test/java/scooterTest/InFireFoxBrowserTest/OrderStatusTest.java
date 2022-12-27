@@ -1,7 +1,5 @@
 package scooterTest.InFireFoxBrowserTest;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -35,8 +33,7 @@ public class OrderStatusTest extends ConnectionFF {
         this.newColor = newColor;
         this.newComment = newComment;
     }
-    //подключение драйвера браузера и установление ожидания в 5 секунд через аннотацию @Before
-    @Before
+    //подключение драйвера браузера и установление ожидания в 5 секунд через
     public void setUp() {
         open();
     }
@@ -52,8 +49,6 @@ public class OrderStatusTest extends ConnectionFF {
 
     @Test
     public void enterOrderAllDataTest() {
-
-
         //создаю объект главной страницы
         HomePage objHomePage = new HomePage(driver);
         //обращаюсь к сайту Самоката
@@ -75,14 +70,12 @@ public class OrderStatusTest extends ConnectionFF {
                 .clickOkButton();
         //создаю объект страницы Заказ оформлен
         OrderIsProcessed objOrderIsProcessed = new OrderIsProcessed(driver);
-        //проверяю отображается ли сообщение, что заказ оформлен
-        assertTrue("Текст страницы Заказа не соответствует полученному  ", objOrderIsProcessed.orderIsProcessedTextIsDisplayed());
+        //проверяю, что поле "Заказ оформлен" отображается
+        assertTrue(objOrderIsProcessed.orderIsProcessedTextIsDisplayed());
     }
-
     //закрываю браузер
-    @After
     public void tearDowm() {
-
         close();
     }
+
 }
