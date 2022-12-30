@@ -4,7 +4,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import ru.yandex.praktikum.*;
-
 import static org.junit.Assert.assertTrue;
 
 
@@ -45,8 +44,6 @@ public class OrderStatusTest extends ConnectionFF {
 
     @Test
     public void enterOrderAllDataTest() {
-        //подключение драйвера браузера и установление ожидания
-        open();
         //создаю объект главной страницы
         HomePage objHomePage = new HomePage(driver);
         //обращаюсь к сайту Самоката
@@ -70,8 +67,6 @@ public class OrderStatusTest extends ConnectionFF {
         OrderIsProcessed objOrderIsProcessed = new OrderIsProcessed(driver);
         //проверяю, что поле "Заказ оформлен" отображается
         assertTrue(objOrderIsProcessed.orderIsProcessedTextIsDisplayed());
-        //закрываю браузер
-        close();
     }
 
 }
