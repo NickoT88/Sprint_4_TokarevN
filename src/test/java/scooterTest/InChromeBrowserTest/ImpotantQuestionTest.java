@@ -9,7 +9,7 @@ import static org.junit.Assert.assertTrue;
 public class ImpotantQuestionTest extends ConnectionChrome {
 
     private static int listIndex;
-    //конструктор тест-класса Вопросы о важном с 2 параметрами
+    
     public ImpotantQuestionTest(int listIndex) {
         this.listIndex=listIndex;
     }
